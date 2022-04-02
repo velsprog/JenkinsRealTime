@@ -5,10 +5,11 @@
 		<listener class-name="events.TestNgListeners"></listener>
 	</listeners>
 	<test thread-count="5" name="Test">
-		<classes>
-			<class name="tests.TC001_CreateLead" />
-			<class name="tests.TC002_EditLead" />
-			<class name="tests.TC003_DeleteLead" />
-		</classes>
+		<groups>
+			<run>
+				<include name="Regression"></include>
+			</run>
+		</groups>
+
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

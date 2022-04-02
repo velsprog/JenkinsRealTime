@@ -25,7 +25,7 @@ public class TC001_CreateLead extends TestNgHooks{
 	}
 	
 
-	@Test(dataProvider="fetchData")
+	@Test(dataProvider="fetchData", groups = {"Regression"})
 	public void createLead(String companyName, String firstName, String lastName) {
 		new HomePage()
 		.clickCRMSFA()
