@@ -35,6 +35,13 @@ pipeline {
         }
 
         stage('API-Automation') {
+                    agent {
+            node {
+              label 'Jenkins_Slave'
+              customWorkspace 'workspace/WebAppAPIAutomation'
+            }
+
+          }
           steps {
             git(url: 'https://github.com/velsprog/WebAppApiAutomation.git', branch: 'master')
             sleep 5
