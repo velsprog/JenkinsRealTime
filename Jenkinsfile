@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'Jenkins_Slave'
+    }
+
+  }
   stages {
     stage('Dev-Build') {
       steps {
@@ -35,7 +40,7 @@ pipeline {
         }
 
         stage('API-Automation') {
-                    agent {
+          agent {
             node {
               label 'Jenkins_Slave'
               customWorkspace 'workspace/WebAppAPIAutomation'
