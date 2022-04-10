@@ -1,8 +1,10 @@
 pipeline {
   agent any
-  maven 'MAVEN_HOME'
-  jdk 'JAVA_HOME'
-  stages {
+  tools {
+      maven 'MAVEN_HOME'
+       jdk 'JAVA_HOME'
+  }
+    stages {
     stage('Dev-Build') {
       steps {
         git(url: 'https://github.com/velsprog/WebApp.git', branch: 'master', poll: true)
