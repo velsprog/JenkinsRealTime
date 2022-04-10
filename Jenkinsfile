@@ -18,17 +18,30 @@ pipeline {
     }
 
     stage('UI-Automation') {
-      agent {
-        node {
-          label 'Jenkins_Slave'
-          customWorkspace 'workspace/WebAppUiAutomation'
+      parallel {
+        stage('UI-Automation') {
+          agent {
+            node {
+              label 'Jenkins_Slave'
+              customWorkspace 'workspace/WebAppUiAutomation'
+            }
+
+          }
+          steps {
+            git(url: 'https://github.com/velsprog/WebAppUiAutomation.git', branch: 'master', poll: true)
+            sleep 5
+            bat 'mvn test'
+          }
         }
 
-      }
-      steps {
-        git(url: 'https://github.com/velsprog/WebAppUiAutomation.git', branch: 'master', poll: true)
-        sleep 5
-        bat 'mvn test'
+        stage('API-Automation') {
+          steps {
+            git(url: 'https://github.com/velsprog/WebAppApiAutomation.git', branch: 'master')
+            sleep 5
+            bat 'mvn test'
+          }
+        }
+
       }
     }
 
