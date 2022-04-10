@@ -18,13 +18,13 @@ pipeline {
     }
 
     stage('UI-Automation') {
-                          agent {
-                        label {
-                            label 'Jenkins_Slave'
-                            //It will create separate workspace for QA, instead of override the dev workspace
-                            customWorkspace 'workspace/WebAppUiAutomation'
-                        }
-                    }
+      agent {
+        node {
+          label 'Jenkins_Slave'
+          customWorkspace 'workspace/WebAppUiAutomation'
+        }
+
+      }
       steps {
         git(url: 'https://github.com/velsprog/WebAppUiAutomation.git', branch: 'master', poll: true)
         sleep 5
