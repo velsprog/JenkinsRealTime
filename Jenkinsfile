@@ -17,6 +17,14 @@ pipeline {
       }
     }
 
+    stage('UI-Automation') {
+      steps {
+        git(url: 'https://github.com/velsprog/WebAppUiAutomation.git', branch: 'master', poll: true)
+        sleep 5
+        bat 'mvn test'
+      }
+    }
+
   }
   tools {
     maven 'MAVEN_HOME'
