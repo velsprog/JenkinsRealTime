@@ -13,7 +13,7 @@ pipeline {
           }
         }
 
-        bat 'StartApp.bat'
+        bat '"set JENKINS_NODE_COOKIE=dontKillMe && start /min StartApp.bat"'
       }
     }
 
