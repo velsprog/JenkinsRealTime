@@ -4,6 +4,7 @@ pipeline {
     stage('Dev-Build') {
       steps {
         git(url: 'https://github.com/velsprog/WebApp.git', branch: 'master', poll: true)
+        bat 'mvn install'
         script {
           script {
             try {
@@ -14,10 +15,13 @@ pipeline {
           }
         }
 
-        bat 'mvn install'
         bat 'StartApp.bat'
       }
     }
 
+  }
+  environment {
+    maven = 'MAVEN_HOME'
+    jdk = 'JAVA_HOME'
   }
 }
